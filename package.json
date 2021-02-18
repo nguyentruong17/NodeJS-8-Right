@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-8-right",
+  "version": "1.0.0",
+  "description": "code following the book 'node-js-the-right-way'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyentruong17/NodeJS-8-Right.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nguyentruong17/NodeJS-8-Right/issues"
+  },
+  "homepage": "https://github.com/nguyentruong17/NodeJS-8-Right#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5"
+  },
+  "devDependencies": {
+    "chai": "^4.3.0",
+    "mocha": "^8.3.0"
+  }
+}
