@@ -5,6 +5,8 @@ FROM node:14.16.0-alpine AS development
 
 WORKDIR /usr/src/app
 
+RUN apk update && apk add bash
+
 COPY package*.json ./
 
 RUN npm install --only=development
