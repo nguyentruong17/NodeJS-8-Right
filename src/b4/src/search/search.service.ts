@@ -12,12 +12,15 @@ export class SearchService {
   private DB_URL;
 
   constructor(
-      private readonly _configService: ConfigService,
-      private readonly _httpService: HttpService) {
+    private readonly _configService: ConfigService,
+    private readonly _httpService: HttpService,
+  ) {
     this.DB_PORT = this._configService.get('EL_PORT');
     this.DB_URL = `http://elasticsearch:${this.DB_PORT}/`;
   }
-  searchBooks(field: string, query: string): Observable<IBook[]> {
+  searchBooks(
+    field: string, 
+    query: string): Observable<IBook[]> {
     const index_to_use = this._configService.get('BOOKS_INDEX');
     const url = this.DB_URL + `${index_to_use}/_search/`;
     const esReqBody = {
@@ -28,18 +31,18 @@ export class SearchService {
         },
       },
     };
-    const options = { url, json: true, body: esReqBody }
+    const options = { url, data: esReqBody };
     return this._httpService.get(url, options).pipe(
-        switchMap((res) => of (res["data"] as IBookSearchResult)),
-        map(bookSearchResult => {
-            const books = bookSearchResult.hits.hits.map(el => el._source)
-            return books
-        }),
-        catchError((err) => {
-          console.log('Error: ', err);
-          //throw new HttpException()bookSearchResult
-          return throwError(err);
-        }),
-      );
+      switchMap((res) => of(res['data'] as IBookSearchResult)),
+      map((bookSearchResult) => {
+        const books = bookSearchResult.hits.hits.map((el) => el._source);
+        return books;
+      }),
+      catchError((err) => {
+        console.log('Error: ', err);
+        //throw new HttpException()bookSearchResult
+        return throwError(err);
+      }),
+    );
   }
 }
