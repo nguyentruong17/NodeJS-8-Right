@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SearchModule } from './search/search.module';
 import { SuggestModule } from './suggest/suggest.module';
+import { BundleModule } from './bundle/bundle.module';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { SuggestModule } from './suggest/suggest.module';
       isGlobal: true,
       envFilePath: ['.b4.env']
     }), 
-    SearchModule, SuggestModule],
+    SearchModule, SuggestModule, BundleModule],
   controllers: [AppController],
   providers: [AppService],
 })

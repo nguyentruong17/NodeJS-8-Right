@@ -32,7 +32,7 @@ export class SearchService {
       },
     };
     const options = { url, data: esReqBody };
-    return this._httpService.get(url, options).pipe(
+    return this._httpService.request(options).pipe(
       switchMap((res) => of(res['data'] as IBookSearchResult)),
       map((bookSearchResult) => {
         const books = bookSearchResult.hits.hits.map((el) => el._source);
@@ -40,7 +40,6 @@ export class SearchService {
       }),
       catchError((err) => {
         console.log('Error: ', err);
-        //throw new HttpException()bookSearchResult
         return throwError(err);
       }),
     );
